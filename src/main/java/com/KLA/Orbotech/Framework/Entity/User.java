@@ -3,6 +3,9 @@ package com.KLA.Orbotech.Framework.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "Users")
@@ -25,6 +28,9 @@ public class User {
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_user", referencedColumnName = "user_id")
+    private List<Order> orderList = new ArrayList<>();
     //GETTERS
     public int getId() {
         return id;

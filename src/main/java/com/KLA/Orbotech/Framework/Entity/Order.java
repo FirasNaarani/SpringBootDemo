@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,11 +15,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private Long orderId;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private Integer orderId;
 
     @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;
@@ -25,13 +23,13 @@ public class Order {
     @Column(name = "total_amount", nullable = false)
     private BigDecimal totalAmount;
 
-    //GETTERS
-    public Long getOrderId() {
-        return orderId;
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_order", referencedColumnName = "order_id", nullable = false)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
-    public User getUser() {
-        return user;
+    //GETTERS
+    public Integer getOrderId() {
+        return orderId;
     }
 
     public LocalDateTime getOrderDate() {
@@ -43,12 +41,8 @@ public class Order {
     }
 
     //SETTERS
-    public void setOrderId(Long orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setOrderDate(LocalDateTime orderDate) {

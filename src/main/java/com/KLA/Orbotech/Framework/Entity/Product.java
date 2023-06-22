@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,7 +15,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private Long productId;
+    private Integer id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -27,9 +29,13 @@ public class Product {
     @Column(name = "quantity", nullable = false)
     private Integer  quantity;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_product", referencedColumnName = "product_id", nullable = false)
+    private List<OrderItem> orderItems = new ArrayList<>();
+
     //GETTERS
-    public Long getId() {
-        return productId;
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
@@ -49,8 +55,8 @@ public class Product {
     }
 
     //SETTERS
-    public void setId(Long id) {
-        this.productId = id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setName(String name) {

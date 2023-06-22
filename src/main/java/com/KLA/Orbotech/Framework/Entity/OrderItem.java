@@ -15,32 +15,21 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long orderItemId;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
-
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "item_amount", nullable = false)
+    @Column(name = "item_amount", precision = 10, scale = 2, nullable = false)
     private BigDecimal itemAmount;
 
-    //GETTERS
+    @ManyToMany
+    @JoinColumns({
+            @JoinColumn(name = "order_id", referencedColumnName = "fk_order"),
+            @JoinColumn(name = "product_id", referencedColumnName = "fk_product")
+    })
 
+    //GETTERS
     public Long getOrderItemId() {
         return orderItemId;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public Product getProduct() {
-        return product;
     }
 
     public Integer getQuantity() {
@@ -55,14 +44,6 @@ public class OrderItem {
 
     public void setOrderItemId(Long orderItemId) {
         this.orderItemId = orderItemId;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public void setQuantity(Integer quantity) {
