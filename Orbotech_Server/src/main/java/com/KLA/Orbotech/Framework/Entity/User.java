@@ -9,7 +9,6 @@ import java.util.Set;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -31,7 +30,7 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Order> orders;
 
     @Override
