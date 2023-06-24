@@ -1,0 +1,14 @@
+version: "3"
+services:
+  server:
+    build:
+      context: ./Orbotech_Server
+      dockerfile: Dockerfile
+    ports:
+      - 9090:9090
+  client:
+    build:
+      context: ./Orbotech_CLI
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080

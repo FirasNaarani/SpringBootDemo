@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/springbootdb
+    url: jdbc:mysql://localhost:3306/springbootdb?useSSL=false&serverTimezone=UTC
     username: root
     password: 207661844Firas
   jpa:

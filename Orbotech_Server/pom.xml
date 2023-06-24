@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.KLA</groupId>
-	<artifactId>Orbotech</artifactId>
+	<artifactId>Orbotech_Server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Orbotech</name>
+	<name>Orbotech_Server</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>20</java.version>

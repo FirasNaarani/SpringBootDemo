@@ -20,16 +20,17 @@ public class Order {
     @Column(name = "order_id")
     private Integer id;
 
-    @Column(name = "order_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "order_date", nullable = false, columnDefinition = "DATETIME(0)")
     private Date orderDate;
 
     @Column(name = "total_amount", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalAmount;
 
-    @OneToMany(mappedBy="order")
+    @OneToMany(mappedBy = "order")
     private Set<OrderItem> orderItems;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false, foreignKey=@ForeignKey(name = "fk_user"))
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user"))
     private User user;
 }
